@@ -29,8 +29,8 @@ public class Main {
         System.out.println("Question 4 answer:" + constructNote(ransomNote1, magazine1));
         System.out.println("Question 4 answer:" + constructNote(ransomNote2, magazine2));
 
-        String string41 = new String("oo1");
-        String string42 = new String("1s2d3f4g56h7jk9l0");
+        String string41 = "oo1";
+        String string42 = "1s2d3f4g56h7jk9l0";
         System.out.println("Question 5 answer:" + letterByDigit(string41));
         System.out.println("Question 5 answer:" + letterByDigit(string42));
 
