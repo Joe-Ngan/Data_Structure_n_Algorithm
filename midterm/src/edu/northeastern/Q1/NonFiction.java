@@ -4,6 +4,10 @@ public class NonFiction extends Book implements iBorrowable{
     public String title;
     public double price;
     public String publishYear;
+
+    public int borrowDate;
+    public int returnDate;
+
     public NonFiction(String title, double price, String publishYear) {
         super();
         this.price = price;
@@ -18,16 +22,16 @@ public class NonFiction extends Book implements iBorrowable{
 
     @Override
     public void setBorrowDate(int day) {
-
+        this.borrowDate = day;
     }
 
     @Override
     public void setReturnDate(int day) {
-
+        this.returnDate = day;
     }
 
     @Override
     public boolean isAvailable(int day) {
-        return false;
+        return (day<borrowDate)||(day>returnDate);
     }
 }
