@@ -1,0 +1,43 @@
+package edu.northeastern.Q1;
+
+public abstract class Book {
+    public String title;
+    public double price;
+    public String publishYear;
+
+    public Book(){
+
+    }
+
+    public Book(String title, double price, String publishYear) {
+        this.title = title;
+        this.price = price;
+        this.publishYear = publishYear;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public String getPublishYear() {
+        return publishYear;
+    }
+
+    public void setPublishYear(String publishYear) {
+        this.publishYear = publishYear;
+    }
+
+    public abstract String description();
+}
