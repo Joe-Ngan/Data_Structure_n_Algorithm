@@ -50,12 +50,28 @@ public class Roomba implements iRobot{
 
     @Override
     public void turnLeft() {
-        dir = Direction.LEFT;
+        if(dir == Direction.LEFT){
+            dir = Direction.DOWN;
+        }else if(dir == Direction.DOWN){
+            dir = Direction.RIGHT;
+        }else if(dir == Direction.RIGHT){
+            dir = Direction.UP;
+        }else {
+            dir = Direction.LEFT;
+        }
     }
 
     @Override
     public void turnRight() {
-        dir = Direction.RIGHT;
+        if(dir == Direction.RIGHT){
+            dir = Direction.DOWN;
+        }else if(dir == Direction.DOWN){
+            dir = Direction.LEFT;
+        }else if(dir == Direction.LEFT){
+            dir = Direction.UP;
+        }else {
+            dir = Direction.RIGHT;
+        }
     }
 
     @Override
