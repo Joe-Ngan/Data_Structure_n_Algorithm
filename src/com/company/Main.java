@@ -1,40 +1,58 @@
 package com.company;
 
+import java.util.*;
+
 public class Main {
 
     public static void main(String[] args) {
-
-        int numberOfStudentsInClass = 62;
-        Integer test = 62;
-        int max = Integer.MAX_VALUE;
-        int min = Integer.MIN_VALUE;
-        max = max+1;
-
-        short maxShort = Short.MAX_VALUE;
-        short minShort = Short.MIN_VALUE;
-
-        float myFloat = 5.23f;
-        float maxFloat = Float.MAX_VALUE;
-        float minFloat = Float.MIN_VALUE;
-
-        double myDouble = 5.23d;
-        double maxDouble = Double.MAX_VALUE;
-        double minDouble = Double.MIN_VALUE;
-
-        System.out.println(maxShort);
-        System.out.println(minShort);
-
-        System.out.println(maxFloat);
-        System.out.println(minFloat);
-
-        System.out.println(maxDouble);
-        System.out.println(minDouble);
-
-
-        char myChar = '\u00A9';
-        System.out.println("my character would be like " + myChar );
-
-        System.out.println("Hello World");
-        System.out.println("We");
+        List<Integer> one = Arrays.asList(1,3);
+        List<Integer> two = Arrays.asList(2,6);
+        List<Integer> three = Arrays.asList(8,10);
+        List<Integer> four = Arrays.asList(15,18);
+        List<List<Integer>> intervals = Arrays.asList(one,two,three,four);
+        System.out.println(getMergedIntervals(intervals));
     }
+
+    public static List<List<Integer>> getMergedIntervals(List<List<Integer>> intervals) {
+        // Write your code here
+        int[][] arr = new int[intervals.size()][intervals.get(0).size()];
+        for(int i = 0; i< intervals.size(); i++){
+            for(int j = 0; j<intervals.get(0).size(); j++){
+                arr[i][j] = intervals.get(i).get(j);
+            }
+        }
+
+//      int[][] arr = intervals.toArray(new int[0][0]);
+//      int[][] arr = intervals.stream().map(u -> u.toArray(new int[])).toArray(int[][]::new);
+
+        Arrays.sort(arr, new Comparator<int[]>(){
+            @Override
+            public int compare(int[]o1, int[]o2) {
+                return o1[0] - o2[0];
+            }
+        });
+
+        List<int[]> lists = new ArrayList<>();
+        for(int i = 0; i < arr.length; i++) {
+            if(lists.size() == 0 || lists.get(lists.size() - 1)[1] < arr[i][0]) {
+                lists.add(new int[]{arr[i][0], arr[i][1]});
+
+            }
+            lists.get(lists.size() - 1)[1] = Math.max(lists.get(lists.size() -1 )[1], arr[i][1]);
+        }
+
+
+        int[][] answer = lists.toArray(new int[0][0]);
+        int[][] answer2 = lists.toArray(new int[0][0]);
+        List<List<Integer>> answerList = new ArrayList<List<Integer>>();
+        for(int i = 0; i < answer.length; i++) {
+            List<Integer> subList = new ArrayList<Integer>();
+            for(int j = 0; j < answer[i].length; j++) {
+                subList.add(j, answer[i][j]);
+            }
+            answerList.add(i, subList);
+        }
+        return answerList;
+    }
+
 }
